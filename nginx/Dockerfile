@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER ph4nf4n ph4nf4n@qq.com
+MAINTAINER 1111 2222@qq.com
 RUN apk --update add nginx
 RUN mkdir -p /run/nginx/
 RUN mkdir -p /etc/nginx/site-enable/
