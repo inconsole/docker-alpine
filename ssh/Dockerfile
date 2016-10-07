@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER inorz inorz@qq.com
+MAINTAINER 1111 22222@qq.com
 
 #ssh-dev
 RUN apk add --update \
