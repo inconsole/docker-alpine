@@ -1,0 +1,1 @@
+docker run -d -p 9000:9000 --name phpfpm -v /Users/apple/Sites/test:/www orz/php-fpm:v1
