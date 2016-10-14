@@ -1,19 +1,22 @@
 #!/bin/sh
-#https://github.com/wangxian/alpine-mysql/blob/master/startup.sh
 
-ROOT_PASSWORD=123456
+if [ -d /app/mysql ]; then
+  echo "[i] MySQL directory already present, skipping creation"
+else
+  echo "[i] MySQL data directory not found, creating initial DBs"
+  mysql_install_db --user=root > /dev/null
+
+  if [ ! -d "/run/mysqld" ]; then
+    mkdir -p /run/mysqld
+  fi
+fi
+
+echo "mysql -e 'UPDATE mysql.user SET password=PASSWORD(\"123456\") WHERE user=\"root\"'"
+echo "mysql -e 'FLUSH PRIVILEGES'"
 
 
-cat << EOF > $tfile
-USE mysql;
-FLUSH PRIVILEGES;
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-UPDATE user SET password=PASSWORD("$MYSQL_ROOT_PASSWORD") WHERE user='root';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
-UPDATE user SET password=PASSWORD("") WHERE user='root' AND host='localhost';
-EOF
 
-/usr/bin/mysqld --user=root --bootstrap --verbose=0 < $tfile
-rm -f $tfile
-
+echo "[i] MySQL starting as [root]"
 exec /usr/bin/mysqld --user=root --console
+
+
