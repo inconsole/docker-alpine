@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # Maintainer
-MAINTAINER Muhammad Zamroni <halo@matriphe.com>
+MAINTAINER a <a@a.com>
 
 # Environments
 ENV TIMEZONE            Asia/Shanghai
@@ -18,6 +18,7 @@ RUN apk update && \
     cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
     echo "${TIMEZONE}" > /etc/timezone && \
     apk add --update \
+        curl \
         php5-mcrypt \
         php5-soap \
         php5-openssl \
@@ -34,6 +35,7 @@ RUN apk update && \
         php5-iconv \
         php5-curl \
         php5-fpm && \
+		curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     
     # Set environments
     sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php5/php-fpm.conf && \
