@@ -1,0 +1,22 @@
+mysql:
+  image: mysql:v1
+  ports:
+    - 3306:3306
+php56:
+  image: php-fpm:v1
+  ports:
+    - 9000:9000
+  links:
+    - mysql:db
+  volumes:
+    - ./www:/www
+nginx:
+  image: nginx:v1
+  ports:
+    - 8088:80
+  links:
+    - php56:php-fpm
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    - ./www:/www
+
