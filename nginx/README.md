@@ -1,1 +1,0 @@
-$docker run -d -p 8008:80 --name web --link phpfpm:phpfpm -v /Users/apple/Sites/test:/www orz/nginx:v1
