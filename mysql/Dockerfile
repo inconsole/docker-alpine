@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER WangXian <xian366@126.com>
+MAINTAINER a <a@a.com>
 
 WORKDIR /app
 VOLUME /app
