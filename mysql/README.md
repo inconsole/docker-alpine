@@ -1,6 +1,7 @@
-#docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 inorz/mysql:v5.5.52
 
-------------------------------
+$docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:v5.5.52
+
+>>------------------------------
 Environment Variables
 
 When you start the mysql image, you can adjust the configuration of the MySQL instance by passing one or more environment variables on the docker run command line. Do note that none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup.
